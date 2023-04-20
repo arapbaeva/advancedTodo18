@@ -1,9 +1,7 @@
 import React, {useCallback, useEffect} from 'react'
 import {useSelector} from 'react-redux'
 import {
-    changeTodolistTitleTC,
     FilterValuesType,
-    removeTodolistTC,
     todolistsActions, todolistsThunk
 } from 'features/TodolistsList/todolists.reducer'
 import {tasksThunks} from 'features/TodolistsList/tasks.reducer'
@@ -60,13 +58,13 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
         dispatch(todolistsActions.changeTodolistFilter({id, filter}))
     }, [])
 
-    const removeTodolist = useCallback(function (id: string) {
-        const thunk = removeTodolistTC(id)
+    const removeTodolist = useCallback(function (todolistId: string) {
+        const thunk = todolistsThunk.removeTodo({todolistId})
         dispatch(thunk)
     }, [])
 
-    const changeTodolistTitle = useCallback(function (id: string, title: string) {
-        const thunk = changeTodolistTitleTC(id, title)
+    const changeTodolistTitle = useCallback(function (todolistId: string, title: string) {
+        const thunk = todolistsThunk.changeTodoTitle({todolistId, title})
         dispatch(thunk)
     }, [])
 

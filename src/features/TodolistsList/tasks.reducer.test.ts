@@ -121,7 +121,7 @@ test('new array should be added when new todolist is added', () => {
 });
 
 test('propertry with todolistId should be deleted', () => {
-	const action = todolistsActions.removeTodolist({id: 'todolistId2'});
+	const action = todolistsThunk.removeTodo.fulfilled({id: 'todolistId2'}, '', {todolistId: 'todolistId2'});
 
 	const endState = tasksReducer(startState, action)
 
